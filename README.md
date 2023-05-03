@@ -18,20 +18,27 @@ git clone https://github.com/yourusername/roast-bot.git
 ```
 cd roast-bot
 ```
-3. Build the Docker image:
+
+3. Create a file named `.env` in the root of the repository and add the following environment variables:
+```
+DISCORD_TOKEN=your_discord_bot_token
+OPENAI_API_KEY=your_openai_api_key
+```
+Replace `your_discord_bot_token` and `your_openai_api_key` with your Discord bot token and OpenAI API key respectively.
+
+4. Build the Docker image:
 ```
 docker build -t thorold/roast_bot .
 ```
 
-4. Run the Docker container:
+5. Run the Docker container:
 ```
-docker run --env DISCORD_TOKEN=your_discord_bot_token --env OPENAI_API_KEY=your_openai_api_key --name roast-bot -d thorold/roast_bot
+docker run --env-file /path/to/your/env/file --name roast-bot -d thorold/roast_bot
 ```
-Replace `your_discord_bot_token` and `your_openai_api_key` with your Discord bot token and OpenAI API key respectively.
 
 The bot is now running in a Docker container with the name `roast-bot`. You can view the logs of the container using the command `docker logs roast-bot`.
 
-5. Add the bot to your Discord server:
+6. Add the bot to your Discord server:
    - Create a Discord bot account and get its token
    - Go to the Discord Developer Portal and add a new application
    - Navigate to the Bot tab and add a new bot
@@ -40,7 +47,7 @@ The bot is now running in a Docker container with the name `roast-bot`. You can 
    https://discord.com/oauth2/authorize?client_id=YOUR_BOT_TOKEN&scope=bot
    ```
 
-6. React to a message with the  emoji to trigger the bot to roast you in the style of Shakespeare.
+7. React to a message with the  emoji to trigger the bot to roast you in the style of Shakespeare.
 
 ## Usage
 
