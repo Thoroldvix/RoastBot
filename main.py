@@ -1,10 +1,8 @@
-import json
+import os
+
 import discord
 
 from responses import get_roast_response
-
-file = open('config.json', 'r')
-config = json.load(file)
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
@@ -25,4 +23,4 @@ async def on_reaction_add(reaction, user):
         await channel.send(get_roast_response(reaction.message.author.id))
 
 
-client.run(config['token_discord'])
+client.run(os.getenv('DISCORD_TOKEN'))
