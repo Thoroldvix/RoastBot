@@ -15,12 +15,13 @@ def get_roast_response(user_id):
     try:
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt='Напиши креативное оскорбление в стиле шекспира на русском языке',
-            temperature=0.8,
+            prompt='Напиши креативное оскорбление и пошли подальше в стиле шекспира на русском языке используй '
+                   'бранную речь',
+            temperature=0.7,
             max_tokens=256,
             top_p=1,
             frequency_penalty=0,
-            presence_penalty=0.61
+            presence_penalty=0.6
         )
         response_str = response['choices'][0]['text'].replace('"', '')
         return f'{response_str} <:sirO:755463220264960080> <@{user_id}>'
