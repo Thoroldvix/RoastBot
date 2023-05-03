@@ -1,3 +1,4 @@
+import logging
 import os
 
 import discord
@@ -16,7 +17,7 @@ async def on_ready():
 
 @client.event
 async def on_reaction_add(reaction, user):
-    print(f'{user.name} reacted with {reaction.emoji} on message {reaction.message.content}')
+    logging.log(logging.INFO, f'{user.name} reacted with {reaction.emoji} on message {reaction.message.content}')
     emoji = '<:sirO:755463220264960080>'
     if str(reaction.emoji) == emoji:
         channel = reaction.message.channel
