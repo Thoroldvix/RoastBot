@@ -15,7 +15,7 @@ def get_roast_response(user_id):
     try:
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt='Напиши креативное оскорбление в стиле шекспира',
+            prompt='Напиши креативное оскорбление в стиле шекспира на русском языке',
             temperature=0.8,
             max_tokens=256,
             top_p=1,
