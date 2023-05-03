@@ -1,12 +1,14 @@
 import logging
 import os
+import sys
 
 import discord
-
-from responses import get_roast_response
+import openai
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
+openai.api_key = os.getenv('OPENAI_KEY')
+discord_token = os.getenv('DISCORD_TOKEN')
 
 
 @client.event
@@ -24,4 +26,21 @@ async def on_reaction_add(reaction, user):
         await channel.send(get_roast_response(reaction.message.author.id))
 
 
-client.run(os.getenv('DISCORD_TOKEN'))
+client.run(discord_token)
+
+
+def get_roast_response(user_id):
+    try:
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt='Напиши креативное оскорбление в стиле шекспира',
+            temperature=0.8,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0.61
+        )
+        response_str = response['choices'][0]['text'].replace('"', '')
+        return f'{response_str} <:sirO:755463220264960080> <@{user_id}>'
+    except Exception as e:
+        sys.exit(e)
