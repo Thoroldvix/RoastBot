@@ -15,9 +15,10 @@ def get_roast_response(user_id):
     try:
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt='Напиши креативное оскорбление и пошли подальше в стиле шекспира на русском языке используй '
-                   'бранную речь',
-            temperature=0.7,
+            prompt='Напиши креативное оскорбление и пошли подальше в стиле шекспира на русском языке используй слова '
+                   'из этого списка: (хуй, еблан, даун)'
+                  ,
+            temperature=1,
             max_tokens=256,
             top_p=1,
             frequency_penalty=0,
