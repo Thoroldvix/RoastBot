@@ -1,54 +1,50 @@
-# Roast Bot using OpenAI API
+# Roast Bot
 
-Roast Bot is a small Discord bot that uses the OpenAI API to roast you in the style of Shakespeare when you react to a message with a specific emoji. The bot runs in a Docker container and can be deployed easily using the provided Docker image.
+Roast Bot is a small Discord bot that uses the OpenAI API to roast you in the style of Shakespeare or in the Japanese language when you react to a message with a specific emoji. It adds a touch of literary flair to your Discord server!
 
 ## Installation
 
-### Prerequisites
-- Docker installed on your machine
+To install and run Roast Bot, follow these steps:
 
-### Steps
+1. Clone the repository or download the source code.
 
-1. Clone the repository:
-```
-git clone https://github.com/yourusername/roast-bot.git
-```
+2. Make sure you have Python 3.6 or higher installed on your system.
 
-2. Change directory into the repository:
-```
-cd roast-bot
+3. Install the required dependencies by running the following command in your terminal or command prompt:
+
+```bash
+pip install -r requirements.txt
 ```
 
-3. Create a file named `.env` in the root of the repository and add the following environment variables:
-```
-DISCORD_TOKEN=your_discord_bot_token
-OPENAI_API_KEY=your_openai_api_key
-```
-Replace `your_discord_bot_token` and `your_openai_api_key` with your Discord bot token and OpenAI API key respectively.
+4. Obtain your Discord bot token and OpenAI API key.
 
-4. Build the Docker image:
-```
-docker build -t thorold/roast_bot .
+5. Run the bot using the following command:
+
+```bash
+python main.py DISCORD_TOKEN=your_token OPENAI_KEY=your_key JAPANESE_ROAST_REACTION=your_emoji CLASSY_ROAST_REACTION=your_emoji
 ```
 
-5. Run the Docker container:
-```
-docker run --env-file /path/to/your/env/file --name roast-bot -d thorold/roast_bot
-```
+Replace your_token with your Discord bot token, your_key with your OpenAI API key, your_emoji with the corresponding emoji for Japanese roast, and your_emoji with the emoji for the classy roast.
 
-The bot is now running in a Docker container with the name `roast-bot`. You can view the logs of the container using the command `docker logs roast-bot`.
+6. Invite the bot to your Discord server using the OAuth2 URL generated for your bot. Here's how you can do it:
 
-6. Add the bot to your Discord server:
-   - Create a Discord bot account and get its token
-   - Go to the Discord Developer Portal and add a new application
-   - Navigate to the Bot tab and add a new bot
-   - Copy the bot token and add it to your server using the following URL, replacing `YOUR_BOT_TOKEN` with your bot token: 
-   ```
-   https://discord.com/oauth2/authorize?client_id=YOUR_BOT_TOKEN&scope=bot
-   ```
-
-7. React to a message with the  emoji to trigger the bot to roast you in the style of Shakespeare.
+   * Go to the Discord Developer Portal.
+   * Create a new application and navigate to the "Bot" section.
+   * Click on "Add Bot" to create a bot for your application. 
+   * Copy the "Client ID" of your bot and replace the <YOUR_CLIENT_ID> in the following URL: https://discord.com/oauth2/authorize?client_id=<YOUR_CLIENT_ID>&scope=bot.
+   * Open the generated URL in your web browser and select the server where you want to add the bot. Follow the instructions to add the bot to your server.
+   * Once the bot is in your server, you can react to a message with a specific emoji to receive a creative roast!
 
 ## Usage
 
-React to a message with the  emoji to trigger the bot to generate a Shakespearean insult based on the message. The bot will respond to the channel with the insult.
+To use Roast Bot, follow these steps:
+
+1. Make sure the bot is running and connected to your Discord server.
+
+2. In your Discord server, navigate to a channel where the bot has access.
+
+3. Send a message that you want to react to with a roast.
+
+4. React to the message with one of the emojis that you provided via environment variable:
+
+The bot will respond with a creative roast in the corresponding style!
