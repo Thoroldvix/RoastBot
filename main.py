@@ -11,7 +11,7 @@ openai.api_key = os.getenv('OPENAI_KEY')
 discord_token = os.getenv('DISCORD_TOKEN')
 
 
-def get_roast_response_classy(user_id):
+async def get_roast_response_classy(user_id):
     with open("sirO.png", "rb") as avatar_file:
         new_avatar = avatar_file.read()
         await client.user.edit(avatar=new_avatar)
@@ -33,7 +33,7 @@ def get_roast_response_classy(user_id):
         sys.exit(e)
 
 
-def get_roast_response_weeb(user_id):
+async def get_roast_response_weeb(user_id):
     with open("ayaya.png", "rb") as avatar_file:
         new_avatar = avatar_file.read()
         await client.user.edit(avatar=new_avatar)
