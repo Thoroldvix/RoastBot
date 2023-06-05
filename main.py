@@ -35,13 +35,13 @@ def get_roast_response(insult_prompt, user_id, guild, reaction_emoji):
 
 
 def get_roast_response_classy(user_id, guild):
-    with open('classy_roast_prompt', 'r', encoding="utf-8") as file:
+    with open('prompts/classy_roast_prompt', 'r', encoding="utf-8") as file:
         insult_string = file.read()
     return get_roast_response(insult_string, user_id, guild, classy_roast_reaction)
 
 
 def get_roast_response_weeb(user_id, guild):
-    with open('weeb_roast_prompt', 'r') as file:
+    with open('prompts/weeb_roast_prompt', 'r') as file:
         insult_string = file.read()
     return get_roast_response(insult_string, user_id, guild, japanese_roast_reaction)
 
