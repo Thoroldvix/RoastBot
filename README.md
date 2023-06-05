@@ -28,12 +28,12 @@ Replace your_token with your Discord bot token, your_key with your OpenAI API ke
 
 6. Invite the bot to your Discord server using the OAuth2 URL generated for your bot. Here's how you can do it:
 
-Go to the Discord Developer Portal.
-Create a new application and navigate to the "Bot" section.
-Click on "Add Bot" to create a bot for your application.
-Copy the "Client ID" of your bot and replace the <YOUR_CLIENT_ID> in the following URL: https://discord.com/oauth2/authorize?client_id=<YOUR_CLIENT_ID>&scope=bot.
-Open the generated URL in your web browser and select the server where you want to add the bot. Follow the instructions to add the bot to your server.
-Once the bot is in your server, you can react to a message with a specific emoji to receive a creative roast!
+ * Go to the Discord Developer Portal.
+ * Create a new application and navigate to the "Bot" section.
+ * Click on "Add Bot" to create a bot for your application. 
+ * Copy the "Client ID" of your bot and replace the <YOUR_CLIENT_ID> in the following URL: https://discord.com/oauth2/authorize?client_id=<YOUR_CLIENT_ID>&scope=bot.
+ * Open the generated URL in your web browser and select the server where you want to add the bot. Follow the instructions to add the bot to your server.
+ * Once the bot is in your server, you can react to a message with a specific emoji to receive a creative roast!
 
 ##Usage
 
