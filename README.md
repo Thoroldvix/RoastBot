@@ -12,7 +12,9 @@ To install and run Roast Bot, follow these steps:
 
 3. Install the required dependencies by running the following command in your terminal or command prompt:
 
+```bash
 pip install -r requirements.txt
+```
 
 4. Obtain your Discord bot token and OpenAI API key.
 
