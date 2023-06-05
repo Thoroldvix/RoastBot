@@ -35,7 +35,7 @@ Replace your_token with your Discord bot token, your_key with your OpenAI API ke
    * Open the generated URL in your web browser and select the server where you want to add the bot. Follow the instructions to add the bot to your server.
    * Once the bot is in your server, you can react to a message with a specific emoji to receive a creative roast!
 
-##Usage
+## Usage
 
 To use Roast Bot, follow these steps:
 
