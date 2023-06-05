@@ -21,7 +21,9 @@ pip install -r requirements.txt
 5. Run the bot using the following command:
 
 ```bash
-python main.py DISCORD_TOKEN=your_token OPENAI_KEY=your_key JAPANESE_ROAST_REACTION=your_emoji CLASSY_ROAST_REACTION=your_emoji
+cd directory/with/script
+$env:DISCORD_TOKEN="your_token"; $env:OPENAI_KEY="your_token"; $env:JAPANESE_ROAST_REACTION="your_reaction"; $env:CLASSY_ROAST_REACTION="your_reaction"; python main.py
+
 ```
 
 Replace your_token with your Discord bot token, your_key with your OpenAI API key, your_emoji with the corresponding emoji for Japanese roast, and your_emoji with the emoji for the classy roast.
