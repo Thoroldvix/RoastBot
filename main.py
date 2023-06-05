@@ -6,21 +6,19 @@ import discord
 import openai
 
 intents = discord.Intents.all()
+intents.message_content = True
 client = discord.Client(intents=intents)
 openai.api_key = os.getenv('OPENAI_KEY')
 discord_token = os.getenv('DISCORD_TOKEN')
 
 
-async def get_roast_response_classy(user_id):
-    with open("sirO.png", "rb") as avatar_file:
-        new_avatar = avatar_file.read()
-        await client.user.edit(avatar=new_avatar)
+def get_roast_response_classy(user_id, guild):
+    with open('classy_roast_prompt', 'r', encoding="utf-8") as file:
+        insult_string = file.read()
     try:
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt='Напиши креативное оскорбление в стиле шекспира на русском языке используй слова '
-                   'из этого списка: (хуй, еблан, даун)'
-            ,
+            prompt=insult_string,
             temperature=1,
             max_tokens=256,
             top_p=1,
@@ -28,20 +26,21 @@ async def get_roast_response_classy(user_id):
             presence_penalty=0.6
         )
         response_str = response['choices'][0]['text'].replace('"', '')
-        return f'{response_str} <:sirO:755463220264960080> <@{user_id}>'
+        for emoji in guild.emojis:
+            if emoji.name == 'sirO':
+                return f'{response_str} <:{emoji.name}:{emoji.id}> <@{user_id}>'
+        return
     except Exception as e:
         sys.exit(e)
 
 
-async def get_roast_response_weeb(user_id):
-    with open("ayaya.png", "rb") as avatar_file:
-        new_avatar = avatar_file.read()
-        await client.user.edit(avatar=new_avatar)
+def get_roast_response_weeb(user_id, guild):
+    with open('weeb_roast_prompt', 'r') as file:
+        insult_string = file.read()
     try:
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt='write insult in japanese using romanized writing style'
-            ,
+            prompt=insult_string,
             temperature=1,
             max_tokens=256,
             top_p=1,
@@ -49,9 +48,19 @@ async def get_roast_response_weeb(user_id):
             presence_penalty=0.6
         )
         response_str = response['choices'][0]['text'].replace('"', '')
-        return f'{response_str} <:AYAYA:1099327621738799184>  <@{user_id}>'
+        for emoji in guild.emojis:
+            if emoji.name == 'AYAYA':
+                return f'{response_str} <:{emoji.name}:{emoji.id}> <@{user_id}>'
+        return
     except Exception as e:
         sys.exit(e)
+
+
+@client.event
+async def change_avatar(avatar_filename):
+    with open(avatar_filename, "rb") as avatar_file:
+        new_avatar = avatar_file.read()
+        await client.user.edit(avatar=new_avatar)
 
 
 @client.event
@@ -61,18 +70,20 @@ async def on_ready():
 
 
 @client.event
-async def on_reaction_add(reaction, user):
-    logging.log(logging.INFO, f'{user.name} reacted with {reaction.emoji} on message {reaction.message.content}')
-    siro_emoji = '<:sirO:755463220264960080>'
-    ayaya_emoji = '<:AYAYA:1099327621738799184>'
+async def on_raw_reaction_add(payload):
+    user = client.get_user(payload.user_id)
+    channel = client.get_channel(payload.channel_id)
+    message = await channel.fetch_message(payload.message_id)
+    guild = client.get_guild(payload.guild_id)
+    logging.log(logging.INFO, f'{user.name} reacted with {payload.emoji.name} on message {message}')
 
-    if str(reaction.emoji) == siro_emoji:
-        channel = reaction.message.channel
-        await channel.send(get_roast_response_classy(reaction.message.author.id))
+    if str(payload.emoji.name) == 'sirO':
+        await channel.send(get_roast_response_classy(message.author.id, guild))
 
-    elif str(reaction.emoji) == ayaya_emoji:
-        channel = reaction.message.channel
-        await channel.send(get_roast_response_weeb(reaction.message.author.id))
+    elif str(payload.emoji.name) == 'AYAYA':
+        await channel.send(get_roast_response_weeb(message.author.id, guild))
+    else:
+        return
 
 
 client.run(discord_token)
