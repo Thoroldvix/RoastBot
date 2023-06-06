@@ -1,6 +1,6 @@
 # Roast Bot
 
-Roast Bot is a small Discord bot that uses the OpenAI API to roast you in the style of Shakespeare or in the Japanese language when you react to a message with a specific emoji. It adds a touch of literary flair to your Discord server!
+Roast Bot is a small Discord bot that uses the OpenAI API to roast you in the style of Shakespeare or in the Japanese language when you react to a message with a specific emoji.
 
 ## Installation
 
